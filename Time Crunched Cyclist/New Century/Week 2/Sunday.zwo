@@ -1,0 +1,15 @@
+<workout_file>
+    <author>s.rich</author>
+    <name>NTCTP New Century - Week 2 - Sunday</name>
+    <description></description>
+    <sportType>bike</sportType>
+    <tags>
+        <tag name="INTERVALS"/>
+        <tag name="EM"/>
+    </tags>
+    <workout>
+        <Warmup Duration="360" PowerLow="0.25" PowerHigh="0.60"/>
+        <SteadyState Duration="5400" Power="0.60"/>
+        <Cooldown Duration="360" PowerLow="0.60" PowerHigh="0.35"/>
+    </workout>
+</workout_file>
