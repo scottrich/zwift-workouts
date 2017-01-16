@@ -1,0 +1,16 @@
+{
+    "name": "Time Crunched Cyclist/New Century",
+    "Week 1": {
+        "Tuesday": [
+            ["EM", 5],
+            ["SS", 3, 6, 5]            
+        ],
+        "Thursday": [
+            ["EM", 5],
+            ["SS", 3, 6, 5]            
+        ],
+        "Saturday": [
+            ["EM", 60]            
+        ]
+    }
+}
