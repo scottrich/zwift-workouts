@@ -16,14 +16,12 @@ export default class ZwiftWorkouts {
                     .then((stat) => {
                         if (!stat.isFile) throw Error("Invalid input file");
                         return fsp.realpath(this.inputFile);
-                    })
-                    .then(realPath => { return realPath }),
+                    }),
                 fsp.stat(this.outputDir)
                     .then((stat) => {
                         if (!stat.isDirectory) throw Error("Invalid output directory");
                         return fsp.realpath(this.outputDir);
                     })
-                    .then(realPath => { return realPath })
             ]
         )
             .then(paths => {
@@ -52,9 +50,19 @@ export default class ZwiftWorkouts {
                                 .then(() => {
                                     _.each(days, (segments, day) => {
                                         const workoutFileName = path.join(weekDir, `${day}.zwo`);
-                                        const workoutName = `${workouts.name} - ${week} - ${day}`
+                                        const workoutName = `${week} - ${day}`
                                         const segmentsText = segments.map(this.segmentText).join("\n");
-                                        const workoutTemplate = `<workout_file>
+                                        fsp.writeFileSync(workoutFileName, this.workoutTemplate(workoutName, segmentsText));
+                                    })
+                                });
+                        });
+                    });
+            })
+            .catch((e) => { console.log(e) });
+    }
+
+    workoutTemplate(workoutName, segmentsText) {
+        return `<workout_file>
     <author>s.rich</author>
     <name>${workoutName}</name>
     <description></description>
@@ -66,31 +74,30 @@ export default class ZwiftWorkouts {
 ${segmentsText}
        <Cooldown Duration="360" PowerLow="0.60" PowerHigh="0.35"/>
     </workout>
-</workout_file>
-`;
-                                        fsp.writeFileSync(workoutFileName, workoutTemplate);
-                                    })
-                                });
-                        });
-                    });
-            })
-            .catch((e) => { console.log(e) });
+</workout_file>`;
     }
 
     segmentText(s) {
         const type = s[0];
         switch (type) {
             case "EM":
-                return `       <SteadyState Duration="${s[1] * 60}" Power="0.60"/>`
-                break;
+                return `       <SteadyState Duration="${s[1] * 60}" Power="0.60"  Cadence="90"/>`;
             case "T":
-                return `       <SteadyState Duration="${s[1] * 60}" Power="0.82"/>`
-                break;
+                return `       <SteadyState Duration="${s[1] * 60}" Power="0.85"/>  Cadence="75" `;
+            case "CR":
+                return `       <SteadyState Duration="${s[1] * 60}" Power="0.97"/>`;
             case "SS":
-                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="0.90" OffPower="0.60"/>`
-                break;
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="0.90" OffPower="0.60"  Cadence="90"/>`;
+            case "SEPI":
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.01" OffPower="0.40"/>  Cadence="100" `;
+            case "PFPI":
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.01" OffPower="0.40"/>  Cadence="90" `;
+            case "OU":
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.00" OffPower="0.90"/>  Cadence="90" `;
+            case "FREE":
+                return `        <FreeRide Duration="${s[1] * 60}" FlatRoad="1"/>`;
             default:
-                break;
+                throw Error(`Invalid workout type: ${type}`);
         }
     }
 }
