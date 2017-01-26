@@ -89,13 +89,13 @@ ${segmentsText}
             case "SS":
                 return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="0.90" OffPower="0.60"  Cadence="90"/>`;
             case "SEPI":
-                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.01" OffPower="0.40"/>  Cadence="100" `;
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.10" OffPower="0.40"/>  Cadence="100" `;
             case "PFPI":
-                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.01" OffPower="0.40"/>  Cadence="90" `;
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.10" OffPower="0.40"/>  Cadence="90" `;
             case "OU":
-                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="1.00" OffPower="0.90"/>  Cadence="90" `;
+                return `       <IntervalsT Repeat="${s[1]}" OnDuration="${s[2] * 60}" OffDuration="${s[3] * 60}" OnPower="0.90" OffPower="1.01"/>  Cadence="90" `;
             case "FREE":
-                return `        <FreeRide Duration="${s[1] * 60}" FlatRoad="1"/>`;
+                return `       <FreeRide Duration="${s[1] * 60}" FlatRoad="1"/>`;
             default:
                 throw Error(`Invalid workout type: ${type}`);
         }
