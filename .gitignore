@@ -3,3 +3,4 @@ node_modules
 testing
 Time Crunched Cyclist
 package-lock.json
+bin

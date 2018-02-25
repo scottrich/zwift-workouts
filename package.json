@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run": "babel-node index.js",
-    "test": "mocha --ui qunit --compilers js:babel-core/register"
+    "build": "babel src -d bin",
+    "generate": "node bin/index.js"
   },
   "babel": {
     "presets": [
@@ -24,7 +24,7 @@
   "homepage": "https://github.com/scottrich/zwift-workouts#readme",
   "devDependencies": {
     "babel-cli": "^6.18.0",
-    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-preset-latest": "^6.16.0",
     "eslint": "^3.13.1",
     "mocha": "^3.2.0"
   },
