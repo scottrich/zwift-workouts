@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d bin",
-    "generate": "npm run build && node bin/index.js -f workouts/* -o ."
+    "generate": "npm run build && node bin/index.js -f workouts/*"
   },
   "babel": {
     "presets": [
@@ -30,6 +30,6 @@
   },
   "dependencies": {
     "fs-extra": "^5.0.0",
-    "yargs": "^6.6.0"
+    "yargs": "^11.0.0"
   }
 }

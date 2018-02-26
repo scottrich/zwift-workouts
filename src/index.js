@@ -19,10 +19,10 @@ export default class ZwiftWorkouts {
                 console.log(`Error loading workouts: ${e}`);
             });
     }
-    writeWorkouts(workouts) {
-        return fse.ensureDir(path.join(this.outputDir, workouts.name))
+    writeWorkouts(workouts, outputDir) {
+        return fse.ensureDir(path.join(outputDir, workouts.name))
             .then(() => {
-                const rootDir = path.join(this.outputDir, workouts.name);
+                const rootDir = path.join(outputDir, workouts.name);
                 _.each(_.omit(workouts, "name"), (days, week) => {
                     const weekDir = path.join(rootDir, week);
                     fse.ensureDir(weekDir)
@@ -38,12 +38,12 @@ export default class ZwiftWorkouts {
             });
      }
     loadWorkouts() {
-            fse.ensureDir(this.outputDir)
-            .then(() => Promise.all(this.inputFiles.map(this.readWorkouts)))     
+            fse.ensureDirSync(this.outputDir);
+            Promise.all(this.inputFiles.map(this.readWorkouts))     
             .then(all_workouts => {
                 console.log(`Writing workouts to ${this.outputDir}`);
                 // console.log(`${JSON.stringify(workouts)}`);
-                return Promise.all(all_workouts.map(this.writeWorkouts))
+                return Promise.all(all_workouts.map(w => this.writeWorkouts(w, this.outputDir)))
             })
             .catch((e) => { console.log(e) })
     }
@@ -90,9 +90,9 @@ ${segmentsText}
 }
 
 const argv = yargs
-    .usage("Usage: $0 --files input file(s) -o output directory")
+    .usage("Usage: $0 -f input file(s) -o output directory")
     .option('outputDir', {
-        alias: 'f',
+        alias: 'o',
         describe: 'output directory',
         default: 'zwift_workouts',
         type: 'string'
@@ -101,7 +101,7 @@ const argv = yargs
         alias: 'f',
         demandOption: true,
         describe: 'x input file(s)',
-        type: 'Array'
+        type: 'array'
     })
     .argv;
 
