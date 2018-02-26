@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d bin",
-    "generate": "node bin/index.js"
+    "generate": "npm run build && node bin/index.js -f workouts/* -o ."
   },
   "babel": {
     "presets": [
-      "es2015-node5"
+      "latest"
     ]
   },
   "repository": {
@@ -29,7 +29,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
-    "fs-promise": "^1.0.0",
+    "fs-extra": "^5.0.0",
     "yargs": "^6.6.0"
   }
 }

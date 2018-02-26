@@ -1,64 +1,51 @@
 import _ from "lodash";
 import yargs from "yargs";
-import fsp from "fs-promise";
 import path from "path";
+import fse from "fs-extra";
 
 export default class ZwiftWorkouts {
     constructor(args) {
-        this.inputFile = args.file;
-        this.outputDir = args.o;
+        this.inputFiles = args.files;
+        this.outputDir = args.outputDir;
     }
 
-    loadWorkouts() {
-        Promise.all(
-            [
-                fsp.stat(this.inputFile)
-                    .then((stat) => {
-                        if (!stat.isFile) throw Error("Invalid input file");
-                        return fsp.realpath(this.inputFile);
-                    }),
-                fsp.stat(this.outputDir)
-                    .then((stat) => {
-                        if (!stat.isDirectory) throw Error("Invalid output directory");
-                        return fsp.realpath(this.outputDir);
-                    })
-            ]
-        )
-            .then(paths => {
-                this.inputFile = paths[0];
-                this.outputDir = paths[1];
-                console.log(`Loading workouts from ${this.inputFile}`);
-                return fsp.readJSON(this.inputFile)
-                    .then(workouts => {
-                        console.log('Successfully loaded workouts.');
-                        return workouts;
-                    })
-                    .catch(e => {
-                        console.log(`Error loading workouts: ${e}`)
-                    });
-            })
+    readWorkouts(f) {
+        return fse.readJSON(f)
             .then(workouts => {
+                console.log('Successfully loaded workouts.');
+                return workouts;
+            })
+            .catch(e => {
+                console.log(`Error loading workouts: ${e}`);
+            });
+    }
+    writeWorkouts(workouts) {
+        return fse.ensureDir(path.join(this.outputDir, workouts.name))
+            .then(() => {
+                const rootDir = path.join(this.outputDir, workouts.name);
+                _.each(_.omit(workouts, "name"), (days, week) => {
+                    const weekDir = path.join(rootDir, week);
+                    fse.ensureDir(weekDir)
+                        .then(() => {
+                            _.each(days, (segments, day) => {
+                                const workoutFileName = path.join(weekDir, `${day}.zwo`);
+                                const workoutName = `${week} - ${day}`
+                                const segmentsText = segments.map(this.segmentText).join("\n");
+                                fse.writeJsonSync(workoutFileName, this.workoutTemplate(workoutName, segmentsText));
+                            })
+                        });
+                });
+            });
+     }
+    loadWorkouts() {
+            fse.ensureDir(this.outputDir)
+            .then(() => Promise.all(this.inputFiles.map(this.readWorkouts)))     
+            .then(all_workouts => {
                 console.log(`Writing workouts to ${this.outputDir}`);
                 // console.log(`${JSON.stringify(workouts)}`);
-                return fsp.ensureDir(this.outputDir)
-                    .then(fsp.ensureDir(path.join(this.outputDir, workouts.name)))
-                    .then(() => {
-                        const rootDir = path.join(this.outputDir, workouts.name);
-                        _.each(_.omit(workouts, "name"), (days, week) => {
-                            const weekDir = path.join(rootDir, week);
-                            fsp.ensureDir(weekDir)
-                                .then(() => {
-                                    _.each(days, (segments, day) => {
-                                        const workoutFileName = path.join(weekDir, `${day}.zwo`);
-                                        const workoutName = `${week} - ${day}`
-                                        const segmentsText = segments.map(this.segmentText).join("\n");
-                                        fsp.writeFileSync(workoutFileName, this.workoutTemplate(workoutName, segmentsText));
-                                    })
-                                });
-                        });
-                    });
+                return Promise.all(all_workouts.map(this.writeWorkouts))
             })
-            .catch((e) => { console.log(e) });
+            .catch((e) => { console.log(e) })
     }
 
     workoutTemplate(workoutName, segmentsText) {
@@ -103,14 +90,21 @@ ${segmentsText}
 }
 
 const argv = yargs
-    .usage("Usage: $0 -file input file -o output directory")
-    .default("o", ".")
-    .demandOption(["file"])
+    .usage("Usage: $0 --files input file(s) -o output directory")
+    .option('outputDir', {
+        alias: 'f',
+        describe: 'output directory',
+        default: 'zwift_workouts',
+        type: 'string'
+    })
+    .option('files', {
+        alias: 'f',
+        demandOption: true,
+        describe: 'x input file(s)',
+        type: 'Array'
+    })
     .argv;
 
 const z = new ZwiftWorkouts(argv);
 
 z.loadWorkouts();
-
-
-
