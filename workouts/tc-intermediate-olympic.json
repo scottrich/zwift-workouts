@@ -1,27 +1,27 @@
 {
     "name": "Time Crunched Triathlete/Intermediate Olympic",
     "Week 1": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 6],
             ["SS", 3, 8, 4],
             ["EM", 6]            
         ],
-        "Wednesday": [
+        "3.Wednesday": [
             ["SS", 3, 8, 4]            
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 60]            
         ]
     },
     "Week 2": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 5],
             ["SS", 3, 10, 5]            
         ],
-        "Wednesday": [
+        "3.Wednesday": [
             ["SS", 3, 8, 4]            
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 15],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -32,14 +32,14 @@
         ]
     },
     "Week 3": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 5],
             ["SS", 4, 8, 4]            
         ],
-        "Wednesday": [
+        "3.Wednesday": [
             ["SS", 3, 10, 4]            
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 15],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -50,36 +50,36 @@
         ]
     },
     "Week 4": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 45]
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 30],
             ["SEPI", 7, 2, 2],            
             ["EM", 50]
         ]
     },
     "Week 5": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 5],
             ["SEPI", 3, 3, 3],            
             ["FREE", 8],            
             ["SEPI", 3, 3, 3],            
             ["EM", 5]            
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 5],
             ["SEPI", 7, 2, 2],                        
             ["EM", 5]            
         ]
     },
     "Week 6": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 10],
             ["SEPI", 5, 3, 3],                        
             ["EM", 20]              
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 45],
             ["SEPI", 3, 3, 3],            
             ["FREE", 8],            
@@ -88,7 +88,7 @@
         ]
     },
     "Week 7": {
-        "Monday": [
+        "1.Monday": [
             ["EM", 10],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -97,11 +97,11 @@
             ["OU", 2, 3, 2],            
             ["EM", 10]             
         ],
-        "Wednesday": [
+        "3.Wednesday": [
             ["EM", 6],
             ["SS", 3, 8, 4]
         ],
-        "Saturday": [
+        "6.Saturday": [
             ["EM", 45],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -112,10 +112,10 @@
         ]
     },
     "Week 8": {
-        "Wednesday": [
+        "3.Wednesday": [
             ["EM", 50]            
         ],
-        "Friday": [
+        "5.Friday": [
             ["EM", 10],
             ["SEPI", 3, 1, 1]           
         ]
