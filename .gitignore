@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
 testing
-Time Crunched Cyclist
+zwift_workouts
 package-lock.json
+bin
