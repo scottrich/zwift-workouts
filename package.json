@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d bin",
-    "generate": "npm run build && node bin/index.js -f workouts/*"
+    "generate": "npm run build && node bin/index.js -f workouts/* -o zwift_workouts"
   },
   "babel": {
     "presets": [

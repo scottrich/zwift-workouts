@@ -1,27 +1,27 @@
 {
     "name": "Time Crunched Triathlete/Intermediate Olympic",
     "Week 1": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 6],
             ["SS", 3, 8, 4],
             ["EM", 6]            
         ],
-        "Thursday": [
+        "Wednesday": [
             ["SS", 3, 8, 4]            
         ],
-        "Sunday": [
+        "Saturday": [
             ["EM", 60]            
         ]
     },
     "Week 2": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 5],
             ["SS", 3, 10, 5]            
         ],
-        "Thursday": [
+        "Wednesday": [
             ["SS", 3, 8, 4]            
         ],
-        "Sunday": [
+        "Saturday": [
             ["EM", 15],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -32,14 +32,14 @@
         ]
     },
     "Week 3": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 5],
             ["SS", 4, 8, 4]            
         ],
-        "Thursday": [
+        "Wednesday": [
             ["SS", 3, 10, 4]            
         ],
-        "Sunday": [
+        "Saturday": [
             ["EM", 15],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -50,7 +50,7 @@
         ]
     },
     "Week 4": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 45]
         ],
         "Saturday": [
@@ -60,7 +60,7 @@
         ]
     },
     "Week 5": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 5],
             ["SEPI", 3, 3, 3],            
             ["FREE", 8],            
@@ -74,7 +74,7 @@
         ]
     },
     "Week 6": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 10],
             ["SEPI", 5, 3, 3],                        
             ["EM", 20]              
@@ -88,7 +88,7 @@
         ]
     },
     "Week 7": {
-        "Tuesday": [
+        "Monday": [
             ["EM", 10],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
@@ -97,11 +97,11 @@
             ["OU", 2, 3, 2],            
             ["EM", 10]             
         ],
-        "Thursday": [
+        "Wednesday": [
             ["EM", 6],
             ["SS", 3, 8, 4]
         ],
-        "Sunday": [
+        "Saturday": [
             ["EM", 45],
             ["OU", 2, 3, 2],            
             ["FREE", 5],
