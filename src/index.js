@@ -31,7 +31,7 @@ export default class ZwiftWorkouts {
                                 const workoutFileName = path.join(weekDir, `${day}.zwo`);
                                 const workoutName = `${week} - ${day}`
                                 const segmentsText = segments.map(this.segmentText).join("\n");
-                                fse.writeJsonSync(workoutFileName, this.workoutTemplate(workoutName, segmentsText));
+                                fse.writeFileSync(workoutFileName, this.workoutTemplate(workoutName, segmentsText));
                             })
                         });
                 });
